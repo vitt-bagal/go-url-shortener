@@ -34,3 +34,19 @@ func CreateShortUrl(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(surl)
 }
+
+/* Redirect short-url to long-url handler function
+func RedirectShortUrl(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(short - url)
+	var long_url UrlRequest
+	json.Unmarshal(reqBody, &long_url)
+	//fmt.Println("passed Longurl is", long_url.LongUrl)
+	//fmt.Fprintf(w, "%+v", string(reqBody))
+	host := "http://localhost:9090/"
+	shortUrl := host + shortener.GenerateShortURL()
+	// Copy urls to file
+	surl := store.StoreToFile(shortUrl, long_url.LongUrl)
+	//fmt.Println(surl)
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(surl)
+}*/
