@@ -7,11 +7,14 @@ import (
 
 	"github.com/gorilla/mux"
 	"github.com/vitt-bagal/go-url-shortener/handler"
+	"github.com/vitt-bagal/go-url-shortener/store"
 )
 
 func main() {
 	// creates a new instance of a mux router
 	myRouter := mux.NewRouter().StrictSlash(true)
+	// initilize store with emtpy file
+	store.InitFileStorage()
 	// calls to handlers functions
 	myRouter.HandleFunc("/", handler.HomePage)
 	// start server on 9090 port
