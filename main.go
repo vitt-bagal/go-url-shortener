@@ -17,6 +17,7 @@ func main() {
 	store.InitFileStorage()
 	// calls to handlers functions
 	myRouter.HandleFunc("/", handler.HomePage)
+	myRouter.HandleFunc("/create-short-url", handler.CreateShortUrl).Methods("POST")
 	// start server on 9090 port
 	fmt.Println("Starting server....")
 	log.Fatal(http.ListenAndServe(":9090", myRouter))
