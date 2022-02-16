@@ -7,6 +7,7 @@ import (
 	"net/http"
 
 	"github.com/vitt-bagal/go-url-shortener/shortener"
+	"github.com/vitt-bagal/go-url-shortener/store"
 )
 
 type UrlRequest struct {
@@ -25,10 +26,11 @@ func CreateShortUrl(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(reqBody, &long_url)
 	//fmt.Println("passed Longurl is", long_url.LongUrl)
 	//fmt.Fprintf(w, "%+v", string(reqBody))
-
 	host := "http://localhost:9090/"
 	shortUrl := host + shortener.GenerateShortURL()
-
+	// Copy urls to file
+	surl := store.StoreToFile(shortUrl, long_url.LongUrl)
+	//fmt.Println(surl)
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(shortUrl)
+	json.NewEncoder(w).Encode(surl)
 }
