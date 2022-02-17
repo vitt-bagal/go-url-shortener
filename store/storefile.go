@@ -60,3 +60,30 @@ func isLongURLExistInFile(str, filepath string) bool {
 	}
 	return isExist
 }
+
+// Function to get correspoding long url of short-url from URLFile
+func GetLongURLFromFile(surl string) string {
+	var lurl string
+	urlFile, err := os.OpenFile("URLFile.txt", os.O_RDONLY, 0644)
+	// check for error
+	if err != nil {
+		log.Fatalln("Could not open URLFile.txt")
+	}
+	defer urlFile.Close()
+	// Read urlfile line by line and get LongURL corresponding to short-url
+	scanner := bufio.NewScanner(urlFile)
+	scanner.Split(bufio.ScanLines)
+	for scanner.Scan() {
+		isPresent, err := regexp.Match(surl, []byte(scanner.Text()))
+		if err != nil {
+			panic(err)
+		}
+		if isPresent {
+			matchedLine := scanner.Text()
+			lurl = strings.Split(matchedLine, "=")[1]
+		} else {
+			continue
+		}
+	}
+	return lurl
+}

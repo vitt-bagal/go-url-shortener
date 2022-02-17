@@ -30,4 +30,5 @@ To create short-url for long-url, do post API request - `http://localhost:9090/c
 "long_url": "<LONG_URL>"
 }
 ```
+Redirect to long URL using `http://localhost:9090/<Created_Short_URL_ID>`
 

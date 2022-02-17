@@ -16,7 +16,7 @@ func main() {
 	// calls to handlers functions
 	myRouter.HandleFunc("/", handler.HomePageHandler)
 	myRouter.HandleFunc("/create-short-url", handler.CreateShortUrlHandler).Methods("POST")
-	//	myRouter.HandleFunc("/{short-url}", handler.RedirectShortUrl)
+	myRouter.HandleFunc("/{short-url:[a-zA-Z0-9]+}", handler.RedirectShortUrlHandler)
 	// start server on 9090 port
 	fmt.Println("Starting server on port 9090....")
 	log.Fatal(http.ListenAndServe(":9090", myRouter))
