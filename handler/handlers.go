@@ -15,12 +15,12 @@ type UrlRequest struct {
 }
 
 // Home handler function
-func HomePage(w http.ResponseWriter, r *http.Request) {
+func HomePageHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Welcome to go-url-shortner...")
 }
 
 // ShortURL handler function
-func CreateShortUrl(w http.ResponseWriter, r *http.Request) {
+func CreateShortUrlHandler(w http.ResponseWriter, r *http.Request) {
 	reqBody, _ := ioutil.ReadAll(r.Body)
 	var long_url UrlRequest
 	json.Unmarshal(reqBody, &long_url)

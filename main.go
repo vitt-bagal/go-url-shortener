@@ -14,8 +14,8 @@ func main() {
 	myRouter := mux.NewRouter().StrictSlash(true)
 
 	// calls to handlers functions
-	myRouter.HandleFunc("/", handler.HomePage)
-	myRouter.HandleFunc("/create-short-url", handler.CreateShortUrl).Methods("POST")
+	myRouter.HandleFunc("/", handler.HomePageHandler)
+	myRouter.HandleFunc("/create-short-url", handler.CreateShortUrlHandler).Methods("POST")
 	//	myRouter.HandleFunc("/{short-url}", handler.RedirectShortUrl)
 	// start server on 9090 port
 	fmt.Println("Starting server on port 9090....")
